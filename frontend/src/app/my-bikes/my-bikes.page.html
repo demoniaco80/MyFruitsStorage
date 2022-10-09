@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Todas las Motos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-list>
+    <ion-item *ngFor="let b of bicycles">
+      <ion-label>
+        <h3>Marca: {{b.brand}}</h3>
+        <h3>Modelo: {{b.model}}</h3>
+      </ion-label>
+      <ion-button color="secondary" fill="clear" shape="round" [routerLink]="['/update/', b.id]">
+        <ion-icon name="create-sharp" style="zoom:1.5" ></ion-icon>
+        Editar
+      </ion-button>
+    </ion-item>
+
+  </ion-list>
+
+</ion-content>

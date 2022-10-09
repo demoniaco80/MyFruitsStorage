@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Eliminar Motos 
+    </ion-title>
+  </ion-toolbar>
+  
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let b of bicycles">
+      <ion-label>
+      <h3>Marca: {{b.brand}}</h3>
+      <h3>Modelo: {{b.model}}</h3>
+      
+      </ion-label>
+      <div class="item-note" item-end>
+        <ion-button color="danger" fill="clear" shape="round" (click)="removeBike(b.id)">
+          <ion-icon name="trash" style="zoom:1.5"></ion-icon>
+          <p>Borrar</p>
+        </ion-button>
+      </div>
+    </ion-item>
+  </ion-list>
+
+</ion-content>
