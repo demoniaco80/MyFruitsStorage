@@ -1,22 +1,22 @@
-const dbConfig = require ("../config/db.config.js") ;
-const Sequelize = require ("sequelize") ;
-const sequelize = new Sequelize ( dbConfig.DB , dbConfig.USER , dbConfig.PASSWORD , {
-  
-    host : dbConfig.HOST ,
-    dialect : dbConfig.dialect ,
-    operatorsAliases : false,
+const dbConfig = require("../config/db.config.js");
+const Sequelize = require("sequelize");
+const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
 
-    pool : {
-        max : dbConfig.pool.max ,
-        min : dbConfig.pool.min ,
-        acquire : dbConfig.pool.acquire ,
-        idle : dbConfig.pool.idle
+    host: dbConfig.HOST,
+    dialect: dbConfig.dialect,
+    operatorsAliases: false,
+
+    pool: {
+        max: dbConfig.pool.max,
+        min: dbConfig.pool.min,
+        acquire: dbConfig.pool.acquire,
+        idle: dbConfig.pool.idle
     }
-} ) ;
+});
 
-    const db = {} ;
+const db = {};
 
-            db.Sequelize = Sequelize ;
-            db.sequelize = sequelize ; 
-            db . bicycles = require ("./bicycle.model.js" ) ( sequelize , Sequelize ) ;
-            module.exports = db ;
+db.Sequelize = Sequelize;
+db.sequelize = sequelize;
+db.fruits = require("./fruits.model.js")(sequelize, Sequelize);
+module.exports = db;

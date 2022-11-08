@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BikesCrudService } from '../services/bikes-crud.service';
+import { FruitsCrudService } from '../services/list-fruits.service';
 import { Router, ActivatedRoute } from "@angular/router";
 import { FormGroup, FormBuilder } from "@angular/forms";
 
@@ -12,11 +12,11 @@ import { FormGroup, FormBuilder } from "@angular/forms";
 
 export class UpdatePage implements OnInit {
 
-  updateBike: FormGroup;
+  updateFruit: FormGroup;
   id: any;
 
   constructor(
-    private bikeCrudService: BikesCrudService,
+    private fruitCrudService: FruitsCrudService,
     private activatedRoute: ActivatedRoute,
     public formBuilder: FormBuilder,
     private router: Router
@@ -25,33 +25,35 @@ export class UpdatePage implements OnInit {
   }
 
   ngOnInit() {
-    this.updateBike = this.formBuilder.group({
-      brand: [''],
-      model: ['']
+    this.updateFruit = this.formBuilder.group({
+      name: [''],
+      type: [''],
+      quantity:['']
     })
   }
   ionViewDidEnter() {
-    this.fetchUser(this.id);
+    this.fetchFruit(this.id);
   }
     
 
-  fetchUser(id) {
-    this.bikeCrudService.getBike(id).subscribe((data) => {
-      this.updateBike.setValue({
-        brand: data['brand'],
-        model: data['model']
+  fetchFruit(id) {
+    this.fruitCrudService.getFruit(id).subscribe((data) => {
+      this.updateFruit.setValue({
+        name: data['name'],
+        type: data['type'],
+        quantity: data['quantity']
       });
     });
   }
 
   onSubmit() {
-    if (!this.updateBike.valid) {
+    if (!this.updateFruit.valid) {
       return false;
     } else {
-      this.bikeCrudService.updateBike(this.id, this.updateBike.value)
+      this.fruitCrudService.updateFruit(this.id, this.updateFruit.value)
         .subscribe(() => {
-          this.updateBike.reset();
-          this.router.navigate(['/my-bikes']);
+          this.updateFruit.reset();
+          this.router.navigate(['/list-fruits']);
         })
     }
   }

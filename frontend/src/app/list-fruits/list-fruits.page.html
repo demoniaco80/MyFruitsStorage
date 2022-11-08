@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Todas las Frutas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+     <ion-card *ngFor="let f of fruits">
+    <ion-card-header>
+      <ion-card-title><h1>{{f.name}}</h1></ion-card-title> 
+      <ion-avatar>
+      <img  src="https://pm1.narvii.com/6677/bad5162348e00cdfceed32301b53b8b0e2612ee6_128.jpg" alt="Silhouette of mountains"/> 
+    </ion-avatar>
+    </ion-card-header>
+    <ion-card-content>  
+    <ion-item>
+    <h2>Tipo: {{f.type}} <br>
+    Cantidad: {{f.quantity}}</h2>
+          <ion-button color="secondary" fill="clear" shape="round" slot="end" [routerLink]="['/update/', f.id]">
+            <ion-icon name="create-sharp" style="zoom:1.5" ></ion-icon>
+            Editar
+          </ion-button> 
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+
+ 
+</ion-content>

@@ -1,74 +1,76 @@
+const { fruit, fruits } = require("../models");
 const db = require("../models")
-const Bike = db.bicycles;
+const Fruit = fruits;
 const Op = db.Sequelize;
 
 exports.create = (req, res) => {
-    if (!req.body.brand) {
+    if (!req.body.name) {
         res.status(400).send({
             message: "Content can not be empty!"
         });
         return;
     }
-    const bicycle = {
-        brand: req.body.brand,
-        model: req.body.model
+    const fruit = {
+      name: req.body.name,
+      type: req.body.type,
+      quantity: req.body.quantity
     };
 
-    Bike.create(bicycle)
+    Fruit.create(fruit)
         .then(data => {
             res.send(data);
         })
         .catch(err => {
             res.status(500).send({
                 message:
-                    err.message || "Some error occurred while creating the bicycle"
+                    err.message || "Some error occurred while creating the fruit"
             });
         });
 };
 exports.findAll = (req, res) => {
-  Bike.findAll()
+  Fruit.findAll()
         .then(data => {
             res.send(data);
         })
         .catch(err => {
             res.status(500).send({
                 message:
-                    err.message || "Some error occurred while creating the bicycle"
+                    err.message || "Some error occurred while creating the fruit"
             });
         });
 };
 exports.findOne = (req, res) => {
   const id = req.params.id;
-  Bike.findByPk(id)
+  Fruit.findByPk(id)
     .then(data => {
       if (data) {
         res.send(data);
       } else {
         res.status(404).send({
-          message: `Cannot find Bike with id=${id}.`
+          message: `Cannot find Fruit with id=${id}.`
         });
       }
     })
     .catch(err => {
       res.status(500).send({
-        message: "Error retrieving Bike with id=" + id
+        message: "Error retrieving Fruit with id=" + id
       });
     });
 };
 exports.update = (req, res) => {
   const id = req.params.id;
 
-  Bike.update(req.body, {
+  Fruit.update(req.body, {
     where: { id: id }
   })
     .then(num => {
       if (num == 1) {
         res.send({
-          message: "Bike was updated successfully."
+          message: "Fruit was updated successfully."
         });
       } else {
         res.send({
-          message: `Cannot update Bike with id=${id}. Maybe Tutorial was not found or req.body is empty!`
+          message: `Cannot update Fruit with id=${id}. Maybe Tutorial was not found or req.body is empty!`
         });
       }
     })
@@ -81,17 +83,17 @@ exports.update = (req, res) => {
 exports.delete = (req, res) => {
     const id = req.params.id;
 
-    Bike.destroy({
+    Fruit.destroy({
       where: { id: id }
     })
       .then(num => {
         if (num == 1) {
           res.send({
-            message: "Bike was deleted successfully!"
+            message: "Fruit was deleted successfully!"
           });
         } else {
           res.send({
-            message: `Cannot delete a Bike with id=${id}. Maybe ToDo was not found!`
+            message: `Cannot delete a Fruit with id=${id}. Maybe ToDo was not found!`
           });
         }
       })

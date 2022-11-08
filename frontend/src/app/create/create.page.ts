@@ -1,5 +1,5 @@
 import { Component, OnInit, NgZone } from '@angular/core';
-import { BikesCrudService } from '../services/bikes-crud.service';
+import { FruitsCrudService } from '../services/list-fruits.service';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, FormControl } from "@angular/forms";
 
@@ -12,29 +12,31 @@ import { FormGroup, FormBuilder, FormControl } from "@angular/forms";
 })
 export class CreatePage implements OnInit {
 
-  bikeForm: FormGroup;
+  fruitForm: FormGroup;
 
   constructor(private router: Router, 
     public formBuilder: FormBuilder,
     private zone: NgZone,
-    private bikesSevice: BikesCrudService) {
-    this.bikeForm = this.formBuilder.group({
-      brand: [''],
-      model: ['']
+    private fruitsSevice: FruitsCrudService) {
+    this.fruitForm = this.formBuilder.group({
+      name: [''],
+      type: [''],
+      quantity:['']
     });
   }
   ngOnInit() {
   }
 
   onSubmit() {
-    if (!this.bikeForm.valid) {
+    if (!this.fruitForm.valid) {
       return false;
     } else {
-      this.bikesSevice.createBike(this.bikeForm.value)
-        .subscribe((response) => {
+      this.fruitsSevice.createFruit(this.fruitForm.value)
+     
+        .subscribe((response) => { window.confirm('¿Estas seguro?')
           this.zone.run(() => {
-            this.bikeForm.reset();
-            this.router.navigate(['/my-bikes']);
+            this.fruitForm.reset();
+            this.router.navigate(['/list-fruits']);
           })
         });
     }

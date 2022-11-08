@@ -21,11 +21,11 @@ db.sequelize.sync();
 
 // simple route
 app.get ("/",(req, res) => {
-  res.json({message:"Welcome to bicycles application."}) ;
+  res.json({message:"Welcome to fruits storage application."}) ;
 } ) ;
 
 
-require ("./routes/bicycle.routes")(app) ;
+require ("./routes/fruits.routes")(app) ;
 
 // set port , listen for requests
 const PORT = process.env.PORT || 8080;

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BikesCrudService } from '../services/bikes-crud.service';
+import { FruitsCrudService } from '../services/list-fruits.service';
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-delete',
@@ -8,18 +8,18 @@ import { Router } from '@angular/router';
 })
 export class DeletePage implements OnInit {
 
-  bicycles: any = [];
+  fruits: any = [];
 
-  constructor(private bikesSevice:BikesCrudService,private router: Router) { }
+  constructor(private fruitsSevice:FruitsCrudService,private router: Router) { }
   ngOnInit(){}
   ionViewDidEnter() {
-    this.bikesSevice.getBikes().subscribe(response => {
-      this.bicycles = response;
+    this.fruitsSevice.getFruits().subscribe(response => {
+      this.fruits = response;
     })
   }
-  removeBike(i) {
+  removeFruit(i) {
     if (window.confirm('¿Estas seguro?')) {
-      this.bikesSevice.deleteBike(i)
+      this.fruitsSevice.deleteFruit(i)
       .subscribe(() => {
           this.ionViewDidEnter();
           console.log('Moto eliminada')

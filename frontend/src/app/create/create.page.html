@@ -1,20 +1,26 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Registrar Motos</ion-title>
+    <ion-title>Registrar Frutas</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-list lines="full">
-    <form [formGroup]="bikeForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="fruitForm" (ngSubmit)="onSubmit()">
       <ion-item>
-        <ion-label position="floating">Marca</ion-label>
-        <ion-input formControlName="brand" type="text" required></ion-input>
+        <ion-label position="floating">Nombre</ion-label>
+        <ion-input formControlName="name" type="text" required></ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-label position="floating">Modelo</ion-label>
-        <ion-input formControlName="model" type="text" required>
+        <ion-label position="floating">Tipo</ion-label>
+        <ion-input formControlName="type" type="text" required>
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Cantidad</ion-label>
+        <ion-input formControlName="quantity" type="integer" required>
         </ion-input>
       </ion-item>
 
